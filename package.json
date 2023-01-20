@@ -4,11 +4,16 @@
   "description": "Studying Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress open"
+    "test": "npx cypress open",
+    "headless": "npx cypress run",
+    "headlessWithReport": "npx cypress run --reporter mochawesome"
   },
   "author": "Evellyn",
   "license": "ISC",
   "dependencies": {
     "cypress": "^9.1.1"
+  },
+  "devDependencies": {
+    "mochawesome": "^7.1.3"
   }
 }
