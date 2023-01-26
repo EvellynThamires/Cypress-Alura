@@ -60,17 +60,30 @@ describe('Login and register of users on alura pic', () => {
         cy.contains('ap-vmessage', 'Mininum length is 8').should('be.visible');
     })
 
-    it.only('Login with a valid user', () => {
+    it('Login with a valid user', () => {
         cy.login('flavio', '123')
 
         cy.contains('a', '(Logout)').should('be.visible');
     })
 
-    it.only('Login with an invalid user', () => {
+    it('Login with an invalid user', () => {
         cy.login('evellyn', '1234')
 
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Invalid user name or password');
+        })
+    })
+
+    const users = require('../../fixtures/users.json');
+    users.forEach(user => {
+        it.only(`Register new user ${user.userName}`, () => {
+            cy.contains('a', 'Register now').click();
+            cy.contains('button', 'Register').click();
+            cy.get('input[formcontrolname="email"]').type(user.email);
+            cy.get('input[formcontrolname="fullName"]').type(user.fullName);
+            cy.get('input[formcontrolname="userName"]').type(user.userName);
+            cy.get('input[formcontrolname="password"]').type(user.password);
+            cy.contains('button', 'Register').click();
         })
     })
 })
