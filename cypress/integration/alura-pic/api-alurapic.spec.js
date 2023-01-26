@@ -11,7 +11,7 @@ describe('Search photos and data', () => {
         })
     })
 
-    it.only('Login with a valid user', () => {
+    it('Login with a valid user', () => {
         cy.request({
             method: 'POST',
             url: 'https://apialurapic.herokuapp.com/user/login',
